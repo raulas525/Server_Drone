@@ -1,0 +1,15 @@
+---
+kind: pipeline
+type: exec
+name: Scale Pipeline Server-Drone
+
+platform:
+    os: linux
+    arch: amd64
+    
+steps:
+- name: turn on Deployment
+  commands:
+  - k get po
+  - k get deploy -o name | xargs -I % k scale % --replicas=5
+  
